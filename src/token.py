@@ -4,6 +4,7 @@ import logging
 from hvac import Client
 from retry import retry
 
+
 class TokenClient(Client):
     def __init__(self, token, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -15,7 +16,7 @@ class TokenClient(Client):
         tries=10,
         delay=1,
         backoff=2,
-        logger=logging.getLogger(__name__)
+        logger=logging.getLogger(__name__),
     )
     def try_token_path(cls, path):
         token = cls.parse_token(path)
@@ -24,4 +25,5 @@ class TokenClient(Client):
     @staticmethod
     def parse_token(path):
         with open(path) as stream:
-            return json.loads(stream.read())["token"]
+            token = json.loads(stream.read())["token"]
+            return token["auth"]["client_token"]
