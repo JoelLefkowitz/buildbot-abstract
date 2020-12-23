@@ -2,7 +2,6 @@ import json
 
 from hvac import Client
 from retry import retry
-import logging
 
 
 class TokenClient(Client):
@@ -15,7 +14,6 @@ class TokenClient(Client):
         tries=10,
         delay=1,
         backoff=2,
-        logger=logging.getLogger(__name__),
     )
     @classmethod
     def try_token_path(cls, path):
