@@ -8,7 +8,7 @@ _package = "buildbot_abstract"
 
 # Sphinx settings
 project = _title
-version = "0.3.1"
+version = "0.3.2"
 master_doc = "index"
 author = "Joel Lefkowitz"
 copyright = f"{datetime.datetime.now().year}, {author}"
