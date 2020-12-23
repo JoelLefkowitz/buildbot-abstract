@@ -1,0 +1,66 @@
+# Builders
+buildNodeWorker:
+  - npx
+  - tsc
+  - --build
+  - ./node-worker/tsconfig.json
+buildDocker:
+  - sh
+  - scripts/docker-build.sh
+
+# Linters
+autoflake:
+  - autoflake
+  - .
+  - '-ri'
+  - '--exclude'
+  - conftest.py
+  - '--remove-all-unused-imports'
+  - '--remove-unused-variables'
+  - '--ignore-init-module-imports'
+bandit:
+  - bandit
+  - .
+  - '-l'
+  - '-i'
+  - '-r'
+  - '--quiet'
+  - '-c'
+  - bandit.yml
+cspell:
+  - cspell
+  - ./**/*
+  - '-c'
+  - cspell.json
+pylint:
+  - pylint
+  - ./**/*.py
+  - '-r'
+  - 'n'
+  - '--rcfile'
+  - pylintrc.conf
+mypy:
+  - mypy
+  - .
+  - '--config-file'
+  - mypy.ini
+
+
+# Formatters
+black:
+  - black
+  - .
+csscomb:
+  - csscomb
+  - .
+isort:
+  - isort
+  - ./**/*
+presort:
+  - isort
+  - ./**/*
+  - '--force-single-line-imports'
+prettier:
+  - prettier
+  - './**/*.{js,ts,html,css}'
+  - '--write'

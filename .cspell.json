@@ -1,0 +1,32 @@
+{
+  "language": "en",
+  "ignorePaths": [
+    "node_modules/**",
+    "__pycache__/**"
+  ],
+  "dictionaries": [
+    "softwareTerms",
+    "python",
+    "node",
+    "typescript",
+    "misc"
+  ],
+  "words": [
+    "pytest",
+    "repourl",
+    "randutils",
+    "buildbot",
+    "buildmaster",
+    "recents",
+    "noqa",
+    "gmail",
+    "groupby",
+    "itertools",
+    "Lefkowitz",
+    "numpy",
+    "psycopg",
+    "sqlite",
+    "yasg",
+    "zfill"
+  ]
+}
