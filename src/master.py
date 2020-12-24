@@ -7,7 +7,7 @@ from .token import TokenClient
 
 
 class MasterClient(TokenClient):
-    def __init__(self, token host="127.0.0.1", port=8010, *args, **kwargs):
+    def __init__(self, token, host="127.0.0.1", port=8010, *args, **kwargs):
         super().__init__(token, *args, **kwargs)
         self.host = host
         self.port = port
