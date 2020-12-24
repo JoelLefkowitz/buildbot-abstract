@@ -18,7 +18,7 @@ class MasterClient(TokenClient):
 
     @property
     def worker_names(self):
-        return self.list("workers")
+        return self.list("workers") or []
 
     @property
     def workers(self):
