@@ -7,14 +7,9 @@ from .token import TokenClient
 
 
 class MasterClient(TokenClient):
-    def __init__(self, token, *args, host="127.0.0.1", port=8010, **kwargs):
-        super().__init__(token, *args, **kwargs)
-        self.host = host
-        self.port = port
-
-    @property
-    def buildbot_url(self):
-        return f"https://{self.host}:{self.port}"
+    def __init__(self, url, token, *args, **kwargs):
+        super().__init__(url, token, *args, **kwargs)
+        self.buildbot_url = url
 
     @property
     def worker_names(self):

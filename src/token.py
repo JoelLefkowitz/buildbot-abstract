@@ -11,8 +11,8 @@ soft_retry = retry(exceptions, tries=10, delay=1, backoff=2, logger=logger)
 
 
 class TokenClient(Client):
-    def __init__(self, token, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, url, token, *args, **kwargs):
+        super().__init__(url, *args, **kwargs)
         self.token = token
 
     @soft_retry
