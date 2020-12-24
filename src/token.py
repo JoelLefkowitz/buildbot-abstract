@@ -20,8 +20,8 @@ class TokenClient(Client):
         return super().__init__(path)
 
     @soft_retry
-    def write(self, path, wrap_ttl=None, **kwargs):
-        return super().__init__(path, wrap_ttl, **kwargs)
+    def write(self, path, secret, wrap_ttl=None, **kwargs):
+        return super().__init__(path, secret=secret, wrap_ttl=wrap_ttl, **kwargs)
 
     @classmethod
     @soft_retry
