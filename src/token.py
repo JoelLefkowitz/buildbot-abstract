@@ -17,11 +17,11 @@ class TokenClient(Client):
 
     @soft_retry
     def list(self, path):
-        return super().__init__(path)
+        return super().list(path)
 
     @soft_retry
     def write(self, path, secret, wrap_ttl=None, **kwargs):
-        return super().__init__(path, secret=secret, wrap_ttl=wrap_ttl, **kwargs)
+        return super().write(path, secret=secret, wrap_ttl=wrap_ttl, **kwargs)
 
     @classmethod
     @soft_retry
