@@ -1,66 +1,87 @@
 # Builders
-buildNodeWorker:
-  - npx
-  - tsc
-  - --build
-  - ./node-worker/tsconfig.json
-buildDocker:
-  - sh
-  - scripts/docker-build.sh
+buildPackage:
+  - python
+  - setup.py
+  - sdist
+  - bdist_wheel
+
+# Publishers
+twine:
+  - twine
+  - upload
+  - dist/*
+  - --username
+  - joellefkowitz
 
 # Linters
-autoflake:
-  - autoflake
-  - .
-  - '-ri'
-  - '--exclude'
-  - conftest.py
-  - '--remove-all-unused-imports'
-  - '--remove-unused-variables'
-  - '--ignore-init-module-imports'
 bandit:
-  - bandit
-  - .
-  - '-l'
-  - '-i'
-  - '-r'
-  - '--quiet'
-  - '-c'
-  - bandit.yml
+    - bandit
+    - "**/*.py"
+    - "-l"
+    - "-i"
+    - "-r"
+    - "--quiet"
+    - "-c"
+    - .bandit.yml
 cspell:
-  - cspell
-  - ./**/*
-  - '-c'
-  - cspell.json
+    - cspell
+    - ./**/*
+    - "-c"
+    - .cspell.json
+eslint:
+    - npx
+    - eslint
+    - "./**/*.{js,ts,html,css}"
+    - "-c"
+    - .eslintrc.yml
+    - --no-error-on-unmatched-pattern
 pylint:
-  - pylint
-  - ./**/*.py
-  - '-r'
-  - 'n'
-  - '--rcfile'
-  - pylintrc.conf
+    - pylint
+    - ./**/*.py
+    - "-r"
+    - "n"
+    - "--rcfile"
+    - .pylintrc.conf
 mypy:
-  - mypy
-  - .
-  - '--config-file'
-  - mypy.ini
-
+    - mypy
+    - .
+    - "--config-file"
+    - .mypy.ini
 
 # Formatters
+autoflake:
+    - autoflake
+    - "**/*.py"
+    - "-ri"
+    - "--exclude"
+    - conftest.py
+    - "--remove-all-unused-imports"
+    - "--remove-unused-variables"
+    - "--ignore-init-module-imports"
 black:
-  - black
-  - .
+    - black
+    - .
 csscomb:
-  - csscomb
-  - .
+    - csscomb
+    - .
 isort:
-  - isort
-  - ./**/*
+    - isort
+    - ./**/*.py
 presort:
-  - isort
-  - ./**/*
-  - '--force-single-line-imports'
+    - isort
+    - ./**/*.py
+    - "--force-single-line-imports"
 prettier:
-  - prettier
-  - './**/*.{js,ts,html,css}'
-  - '--write'
+    - prettier
+    - "**/*.{js,ts,html,css}"
+    - --write
+
+# tests
+pytest:
+    - pytest
+    - .
+
+# Utils
+bumpPatch:
+    - bump2version
+    - patch

@@ -7,5 +7,22 @@ if __name__ == "__main__":
         install_requires=[["buildbot[bundle]", "hvac", "names", "retry"]],
         extras_require={
             "dev": ["black", "autoflake", "isort", "mypy", "wheel"],
+            "docs": [
+                "sphinx",
+                "pyimport",
+                "pypandoc",
+                "sphinxcontrib.apidoc",
+                "sphinxcontrib.pandoc_markdown",
+                "sphinx-autodoc-annotation",
+                "yummy_sphinx_theme",
+            ],
+            "tests": [
+                "pytest",
+                "pytest-cov",
+                "pytest-html",
+                "pytest-sugar",
+                "pytest-bdd",
+                "pytest-watch",
+            ],
         },
     )

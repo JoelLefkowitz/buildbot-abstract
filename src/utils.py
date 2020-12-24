@@ -4,7 +4,7 @@ from .exceptions import MaxUniqueNameAttempts
 
 
 def get_unique_name(taken_names, max_tries=10):
-    for i in range(max_tries):
+    for _ in range(max_tries):
         name = get_first_name()
 
         if name not in taken_names:

@@ -14,24 +14,33 @@ function parseYaml(x) {
 }
 
 module.exports = function (grunt) {
-  execs = joinObjAttrs(parseYaml("routines.yml"));
+  const execs = joinObjAttrs(parseYaml("routines.yml"));
 
-  grunt.initConfig({ exec: execs });
+  grunt.initConfig({
+    exec: execs,
+    clean: { packages: ["dist", "build", "*.egg-info"] },
+  });
+
   grunt.loadNpmTasks("grunt-exec");
+  grunt.loadNpmTasks("grunt-force-task");
+  grunt.loadNpmTasks("grunt-contrib-clean");
 
   for (let name of Object.keys(execs)) {
-    grunt.registerTask(name, "exec:" + name);
+    ["prettier"].includes(name)
+      ? grunt.registerTask(name, "force:exec:" + name)
+      : grunt.registerTask(name, "exec:" + name);
   }
 
-  grunt.registerTask("lint", ["pylint", "bandit", "cspell", "mypy"]);
+  grunt.registerTask("lint", ["cspell", "pylint", "bandit"]);
   grunt.registerTask("format", [
     "presort",
     "black",
     "autoflake",
-    "sort",
+    "isort",
     "prettier",
     "csscomb",
   ]);
   grunt.registerTask("unitTests", ["pytest"]);
   grunt.registerTask("prebuild", ["lint", "format", "unitTests"]);
+  grunt.registerTask("publish", ["clean:packages", "buildPackage", "twine"]);
 };

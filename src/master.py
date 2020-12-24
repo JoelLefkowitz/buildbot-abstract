@@ -7,7 +7,7 @@ from .token import TokenClient
 
 
 class MasterClient(TokenClient):
-    def __init__(self, token, host="127.0.0.1", port=8010, *args, **kwargs):
+    def __init__(self, token, *args, host="127.0.0.1", port=8010, **kwargs):
         super().__init__(token, *args, **kwargs)
         self.host = host
         self.port = port
@@ -23,8 +23,8 @@ class MasterClient(TokenClient):
     @property
     def workers(self):
         return [
-            worker.Worker(worker_name, client.get(f"/workers/{worker_name}"))
-            for worker_name in client.worker_names
+            worker.Worker(worker_name, self.get(f"/workers/{worker_name}"))
+            for worker_name in self.worker_names
         ]
 
     @property
@@ -54,12 +54,12 @@ class MasterClient(TokenClient):
         )
 
     def postgres_url(self, host, db_name="postgres", user="postgres"):
-        urllib.parse.quote_plus(self.postgres_password)
-        return {f"db_url": "postgresql+psycopg2://{user}:{password}@{host}/{db_name}"}
+        password = urllib.parse.quote_plus(self.postgres_password)
+        return {"db_url": f"postgresql+psycopg2://{user}:{password}@{host}/{db_name}"}
 
     def checkout_build(self, name, repo, steps):
         f = util.BuildFactory()
-        f.addStep(steps.Git(repourl="repo", mode="incremental"))
+        f.addStep(steps.Git(repourl=repo, mode="incremental"))
 
         for step in steps:
             f.addStep(steps.ShellCommand(command=step))
@@ -71,7 +71,7 @@ class MasterClient(TokenClient):
         return changes.GitPoller(repourl=repo, branches=True)
 
     @staticmethod
-    def scheduler(name, repo, builders, timeout=300):
+    def scheduler(name, builders, timeout=300):
         return schedulers.SingleBranchScheduler(
             name=name, treeStableTimer=timeout, builderNames=builders
         )

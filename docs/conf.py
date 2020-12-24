@@ -2,7 +2,9 @@ import datetime
 import os
 import re
 
-_title = "Buildbot Abstract"
+import pypandoc
+
+_title = "Buildbot abstract"
 _project = "buildbot-abstract"
 _package = "buildbot_abstract"
 
@@ -11,7 +13,10 @@ project = _title
 version = "0.3.6"
 master_doc = "index"
 author = "Joel Lefkowitz"
-copyright = f"{datetime.datetime.now().year}, {author}"
+
+_copyright = f"{datetime.datetime.now().year}, {author}"
+copyright = _copyright  # pylint: disable=redefined-builtin
+
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "venv"]
 
 extensions = [
