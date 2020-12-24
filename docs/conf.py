@@ -10,7 +10,7 @@ _package = "buildbot_abstract"
 
 # Sphinx settings
 project = _title
-version = "0.3.6"
+version = "0.3.7"
 master_doc = "index"
 author = "Joel Lefkowitz"
 
