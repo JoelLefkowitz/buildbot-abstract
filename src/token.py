@@ -25,9 +25,9 @@ class TokenClient(Client):
 
     @classmethod
     @soft_retry
-    def try_token_path(cls, path):
+    def try_token_path(cls, url, path):
         token = cls.parse_token(path)
-        return cls(token)
+        return cls(url, token)
 
     @staticmethod
     def parse_token(path):
