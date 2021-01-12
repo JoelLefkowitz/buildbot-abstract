@@ -1,6 +1,6 @@
 # Buildbot abstract
 
-Small buildbot abstraction
+Buildbot abstraction capable of authenticating with a vault server
 
 ## Status
 
