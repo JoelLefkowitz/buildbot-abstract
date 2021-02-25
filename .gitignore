@@ -5,15 +5,12 @@ __pypackages__/
 !.vscode/tasks.json
 .c9/
 .cache
-.cache
-.classpath
 .classpath
 .coverage
 .coverage.*
 .dmypy.json
 .DS_Store
 .eggs/
-.env
 .history/*
 .hypothesis/
 .idea/
@@ -21,7 +18,6 @@ __pypackages__/
 .ipynb_checkpoints
 .mypy_cache/
 .nox/
-.project
 .project
 .pyre/
 .pytest_cache/
@@ -31,12 +27,9 @@ __pypackages__/
 .sass-cache/
 .scrapy
 .settings/
-.settings/
 .spyderproject
 .spyproject
-.terraform/
 .test_report.*
-.tfstate/
 .tox/
 .venv
 .vscode/*
@@ -44,6 +37,7 @@ __pypackages__/
 *.cover
 *.egg
 *.egg-info/
+*.env
 *.env
 *.launch
 *.log
@@ -61,7 +55,6 @@ __pypackages__/
 *.tfstate.backup
 *$py.class
 \__pycache__/
-ansible/playbooks/files/*
 bazel-out/
 build/
 celerybeat-schedule/
@@ -86,7 +79,6 @@ lib/
 lib64/
 libpeerconnection.log
 local_settings.py
-MANIFEST.*
 node_modules/
 nosetests.xml
 npm-debug.log
@@ -96,13 +88,15 @@ pip-delete-this-directory.txt
 pip-log.txt
 pip-wheel-metadata/
 profile_default/
+regisrty/media
+regisrty/registry/media
 sdist/
 share/python-wheels/
 site/
 speed-measure-plugin*.json
 sqlite3
 target/
-target/
+terraform/.terraform/
 testem.log
 Thumbs.db
 tmp/

@@ -1,0 +1,7 @@
+project: buildbot-abstract
+version: 0.3.12
+author: Joel Lefkowitz
+verbose_name: Buildbot abstract
+html_title: Buildbot abstract
+github_url: JoelLefkowitz/buildbot-abstract
+apidoc_module_dir: buildbot_abstract
