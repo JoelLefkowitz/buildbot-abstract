@@ -124,7 +124,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 [travis_shield]: https://img.shields.io/travis/joellefkowitz/buildbot-abstract
 [codacy_shield]: https://img.shields.io/codacy/coverage/buildbot-abstract
 [coverage_shield]: https://img.shields.io/codacy/grade/buildbot-abstract
-[readthedocs_shield]: https://img.shields.io/readthedocs/joellefkowitz-buildbot-abstract
+[readthedocs_shield]: https://img.shields.io/readthedocs/buildbot-abstract
 [issues_shield]: https://img.shields.io/github/issues/joellefkowitz/buildbot-abstract
 [pulls_shield]: https://img.shields.io/github/issues-pr/joellefkowitz/buildbot-abstract
 [pypi_shield]: https://img.shields.io/pypi/v/buildbot_abstract
