@@ -7,7 +7,9 @@ from retry import retry
 
 logger = logging.getLogger(__name__)
 exceptions = (FileNotFoundError, requests.exceptions.ConnectionError)
-soft_retry = retry(exceptions, tries=10, delay=1, backoff=2, logger=logger)
+soft_retry = retry(
+    exceptions, tries=10, delay=1, backoff=2, logger=logger
+)
 
 
 class TokenClient(Client):
@@ -21,7 +23,9 @@ class TokenClient(Client):
 
     @soft_retry
     def write(self, path, secret, wrap_ttl=None, **kwargs):
-        return super().write(path, secret=secret, wrap_ttl=wrap_ttl, **kwargs)
+        return super().write(
+            path, secret=secret, wrap_ttl=wrap_ttl, **kwargs
+        )
 
     @classmethod
     @soft_retry

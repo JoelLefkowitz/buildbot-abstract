@@ -1,6 +1,6 @@
 # Buildbot abstract
 
-Buildbot abstraction capable of authenticating with a vault server
+Buildbot abstraction capable of authenticating with a vault server.
 
 ## Status
 

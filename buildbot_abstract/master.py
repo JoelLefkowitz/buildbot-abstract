@@ -18,7 +18,9 @@ class MasterClient(TokenClient):
     @property
     def workers(self):
         return [
-            worker.Worker(worker_name, self.get(f"/workers/{worker_name}"))
+            worker.Worker(
+                worker_name, self.get(f"/workers/{worker_name}")
+            )
             for worker_name in self.worker_names
         ]
 
@@ -30,7 +32,11 @@ class MasterClient(TokenClient):
     def www(self):
         return {
             "port": self.port,
-            "plugins": {"waterfall_view": {}, "console_view": {}, "grid_view": {}},
+            "plugins": {
+                "waterfall_view": {},
+                "console_view": {},
+                "grid_view": {},
+            },
         }
 
     @staticmethod
@@ -50,7 +56,9 @@ class MasterClient(TokenClient):
 
     def postgres_url(self, host, db_name="postgres", user="postgres"):
         password = urllib.parse.quote_plus(self.postgres_password)
-        return {"db_url": f"postgresql+psycopg2://{user}:{password}@{host}/{db_name}"}
+        return {
+            "db_url": f"postgresql+psycopg2://{user}:{password}@{host}/{db_name}"
+        }
 
     def checkout_build(self, name, repo, steps):
         f = util.BuildFactory()
@@ -59,7 +67,9 @@ class MasterClient(TokenClient):
         for step in steps:
             f.addStep(steps.ShellCommand(command=step))
 
-        return util.BuilderConfig(name=name, workernames=self.worker_names, factory=f)
+        return util.BuilderConfig(
+            name=name, workernames=self.worker_names, factory=f
+        )
 
     @staticmethod
     def change_source(repo):
